@@ -1,0 +1,6 @@
+name,email,password,role
+Admin Kampus,admin2@finebank.test,password123,superadmin
+Najwa,najwa@finebank.test,password123,user
+Ghiyatsi,ghiyatsi@finebank.test,password123,user
+Puji,puji@finebank.test,password123,user
+Admin Verifikasi,staff@finebank.test,password123,admin

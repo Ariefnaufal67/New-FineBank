@@ -1,0 +1,69 @@
+{% verbatim %}<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beranda · FineBank</title><style>
+:root{--bg:#0f1f1d;--card:#16302c;--card2:#1b3b36;--text:#f6f5f0;--muted:#a9c4bf;--accent:#299d91;--amber:#e8a23b;--bad:#e5686a;--line:#244a44}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+a{color:var(--accent)}header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:16px 28px;border-bottom:1px solid var(--line)}
+header b{font-size:18px}nav{display:flex;flex-wrap:wrap;gap:8px}nav a{color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:8px}nav a:hover,nav a.on{background:var(--card);color:var(--text)}
+main{max-width:1100px;margin:0 auto;padding:24px 28px 56px}h1{margin:0 0 4px;font-size:26px}h2{font-size:16px;margin:0 0 12px;color:var(--amber)}p.sub{margin:0 0 20px;color:var(--muted)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}.cols{display:grid;gap:14px;grid-template-columns:1fr 1fr;margin-top:14px}@media(max-width:800px){.cols{grid-template-columns:1fr}}
+.card{background:var(--card);border-radius:12px;padding:16px 18px}.card .l{font-size:13px;color:var(--muted)}.card .v{font-size:24px;font-weight:700;margin-top:6px}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:500}td.r,th.r{text-align:right}
+.mono{font-family:ui-monospace,Consolas,monospace;font-size:13px}.bad{color:var(--bad)}.ok{color:var(--accent)}.warn{color:var(--amber)}
+button,.btn{background:var(--accent);color:#04201c;border:0;border-radius:8px;padding:10px 16px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block;font-size:14px}
+button.ghost,.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}input{background:#0b1716;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:10px 12px;font-size:14px;width:100%}
+.login{max-width:380px;margin:40px auto;background:var(--card);padding:24px;border-radius:14px;display:grid;gap:12px}.login .err{color:var(--bad);font-size:13px;min-height:18px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:16px;z-index:10}.modal form,.modal .box{background:var(--card);border-radius:14px;padding:22px;width:100%;max-width:460px;display:grid;gap:12px;max-height:92vh;overflow:auto}
+label{font-size:12px;color:var(--muted);display:grid;gap:6px;letter-spacing:.04em}select,textarea{background:#0b1716;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:10px 12px;font-size:14px;width:100%;font-family:inherit}
+.badge{padding:2px 8px;border-radius:999px;font-size:12px;background:var(--card2)}.badge.bad{background:rgba(229,104,106,.18)}.badge.ok{background:rgba(41,157,145,.2)}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 14px;align-items:center}.toolbar input,.toolbar select{width:auto;min-width:150px}.act button{padding:4px 10px;font-size:12px;margin-left:4px}button.danger{background:transparent;color:var(--bad);border:1px solid var(--bad)}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--card2);padding:10px 18px;border-radius:10px;z-index:20}.errbox{color:var(--bad);font-size:13px}
+.empty{color:var(--muted);padding:12px 0}.chart{position:relative;height:260px}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.right{margin-left:auto}
+</style></head><body>
+<header><b>FineBank API</b><nav>
+<a href="/" class="on">Beranda</a>
+<a href="/statistik" class="">Statistik</a>
+<a href="/pengeluaran" class="">Pengeluaran</a>
+<a href="/tagihan" class="">Tagihan</a>
+<a href="/pembayaran" >Pembayaran</a><a href="/impor" data-roles="admin,superadmin" style="display:none">Impor</a><a href="/silk/" data-roles="superadmin" style="display:none">Profiling (Silk)</a><a href="/admin/" data-roles="superadmin" style="display:none">Admin</a>
+<a href="/api/docs/">Docs (Swagger)</a><a href="/health">Health</a>
+<a href="#" id="logout" style="display:none">Keluar</a></nav></header>
+<main id="app">
+<h1>FineBank API</h1><p class="sub">Backend manajemen keuangan: pengeluaran, kategori, tagihan. Dibuat untuk Pemrograman Sisi Server.</p>
+<div class="grid" id="quick"></div>
+<div class="row" style="margin-top:24px"><a class="btn" href="/api/docs/">Buka Swagger Docs</a><a class="btn ghost" href="/statistik">Lihat Statistik</a><a class="btn ghost" href="/silk/">Profiling (Silk)</a><a class="btn ghost" href="/admin/">Django Admin</a></div>
+<div class="cols"><div class="card"><h2>Fitur</h2><table><tr><td>Auth JWT + role user/admin</td></tr><tr><td>CRUD pengeluaran, kategori, tagihan</td></tr><tr><td>Pagination, filter, sort, throttling</td></tr><tr><td>Import CSV massal, query relasional, agregasi</td></tr><tr><td>Profiling query ORM</td></tr><tr><td>Docker + PostgreSQL</td></tr></table></div>
+<div class="card"><h2>Akun contoh (hasil seed)</h2><table><tr><td class="mono">admin@finebank.test</td><td class="r">admin</td></tr><tr><td class="mono">arief@finebank.test</td><td class="r">user</td></tr></table><p class="sub" style="margin-top:12px">Password sama dengan yang tertera di README.</p></div></div></main>
+<script>
+const TK='fb_token';
+const getToken=()=>{try{return sessionStorage.getItem(TK)}catch(e){return null}};
+const setToken=(t)=>{try{t?sessionStorage.setItem(TK,t):sessionStorage.removeItem(TK)}catch(e){}setTimeout(navRoles,0)};
+function role(){try{return JSON.parse(atob(getToken().split('.')[1].replace(/-/g,'+').replace(/_/g,'/'))).role}catch(e){return null}}
+function uid(){try{return Number(JSON.parse(atob(getToken().split('.')[1].replace(/-/g,'+').replace(/_/g,'/'))).sub)}catch(e){return null}}
+const isStaff=()=>['admin','superadmin'].includes(role());
+function navRoles(){const r=role();document.querySelectorAll('[data-roles]').forEach(a=>{a.style.display=(r&&a.dataset.roles.split(',').includes(r))?'':'none'})}
+async function api(path,opt={}){
+  const r=await fetch(path,Object.assign({},opt,{headers:Object.assign({'Content-Type':'application/json',Authorization:'Bearer '+getToken()},opt.headers||{})}));
+  if(r.status===204)return null;
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok){const e=new Error(j.message||('HTTP '+r.status));e.status=r.status;e.details=j.errors;throw e}
+  return opt.full?j:(j.data!==undefined?j.data:j);
+}
+const rp=(n)=>'Rp '+Number(n||0).toLocaleString('id-ID');
+function el(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined&&text!==null)e.textContent=text;return e}
+function card(label,value,cls){const c=el('div','card');c.appendChild(el('div','l',label));c.appendChild(el('div','v '+(cls||''),value));return c}
+function table(headers,rows,rightFrom){const t=el('table');const th=el('tr');headers.forEach((h,i)=>th.appendChild(el('th',i>=rightFrom?'r':'',h)));t.appendChild(th);
+  rows.forEach(r=>{const tr=el('tr');r.forEach((c,i)=>tr.appendChild(el('td',(i>=rightFrom?'r ':'')+(c&&c.mono?'mono':''),c&&c.t!==undefined?c.t:c)));t.appendChild(tr)});return t}
+function panel(title,node){const p=el('div','card');p.appendChild(el('h2','',title));p.appendChild(node);return p}
+function showLogin(app,onDone,msg){
+  app.textContent='';
+  const f=el('form','login');f.appendChild(el('h1','','Masuk'));f.appendChild(el('p','sub',msg||'Gunakan akun FineBank (mis. admin@finebank.test).'));
+  const em=el('input');em.type='email';em.placeholder='Email';em.required=true;const pw=el('input');pw.type='password';pw.placeholder='Password';pw.required=true;
+  const err=el('div','err');const b=el('button','','Masuk');b.type='submit';[em,pw,err,b].forEach(x=>f.appendChild(x));
+  f.onsubmit=async(e)=>{e.preventDefault();err.textContent='';try{const r=await fetch('/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em.value,password:pw.value})});const j=await r.json();if(!r.ok)throw new Error(j.message||'Login gagal');setToken(j.data.token);onDone()}catch(x){err.textContent=x.message}};
+  app.appendChild(f);
+}
+function wireLogout(){navRoles();const a=document.getElementById('logout');if(getToken()){a.style.display='';a.onclick=(e)=>{e.preventDefault();setToken(null);location.reload()}}}
+wireLogout();
+</script><script>(async()=>{const q=document.getElementById('quick');
+ if(!getToken()){q.appendChild(card('Status','Belum masuk — buka Statistik untuk login'));return}
+ try{const d=await api('/api/stats/expenses');q.appendChild(card('Total pengeluaran',rp(d.total)));q.appendChild(card('Jumlah pengeluaran',d.expenseCount));q.appendChild(card('Rata-rata',rp(d.avg)));
+  const b=await api('/api/stats/bills');q.appendChild(card('Tagihan terlambat',b.overdue.count,b.overdue.count?'bad':'ok'))}catch(e){q.appendChild(card('Status',e.message,'bad'))}})();</script></body></html>{% endverbatim %}

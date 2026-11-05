@@ -1,0 +1,39 @@
+# Jalankan: docker compose up -d --build
+# Tabel dibuat otomatis lewat migrasi saat web start.
+# Isi data: docker compose exec web python manage.py import_csv   (atau seed_demo)
+# Akun admin panel: docker compose exec web python manage.py createsuperuser
+services:
+  web:
+    container_name: finebank-django
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgres://finebank:finebank_password@postgres:5432/finebank
+      SECRET_KEY: ganti-dengan-string-acak-panjang-minimal-32-karakter
+      DEBUG: "false"
+      ALLOWED_HOSTS: "*"
+      CORS_ORIGINS: "*"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+  postgres:
+    container_name: finebank-db
+    image: postgres:17
+    environment:
+      POSTGRES_DB: finebank
+      POSTGRES_USER: finebank
+      POSTGRES_PASSWORD: finebank_password
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data/pgdata
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U finebank -d finebank"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+volumes:
+  pgdata:

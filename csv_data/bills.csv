@@ -1,0 +1,7 @@
+userEmail,name,amount,dueDate,status
+najwa@finebank.test,Internet,350000,2026-10-10,paid
+najwa@finebank.test,Listrik,200000,2026-10-20,unpaid
+najwa@finebank.test,Kos,800000,2026-12-01,unpaid
+ghiyatsi@finebank.test,Kos,750000,2026-10-05,paid
+ghiyatsi@finebank.test,Paket data,100000,2026-10-25,unpaid
+puji@finebank.test,Kos,900000,2026-12-05,unpaid

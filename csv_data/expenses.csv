@@ -1,0 +1,19 @@
+userEmail,category,title,amount,date,note
+najwa@finebank.test,Makanan,Nasi goreng,18000,2026-09-03,
+najwa@finebank.test,Makanan,Kopi susu,22000,2026-09-05,Kedai dekat kampus
+najwa@finebank.test,Transport,Bensin,50000,2026-09-07,
+najwa@finebank.test,Hiburan,Tiket bioskop,45000,2026-09-12,
+najwa@finebank.test,Makanan,Makan malam,35000,2026-10-01,
+najwa@finebank.test,Transport,Ojek online,27000,2026-10-04,
+najwa@finebank.test,Makanan,Sarapan,12000,2026-10-09,
+najwa@finebank.test,Hiburan,Langganan musik,55000,2026-10-15,
+ghiyatsi@finebank.test,Makanan,Ayam geprek,20000,2026-09-02,
+ghiyatsi@finebank.test,Kuliah,Fotokopi modul,15000,2026-09-10,
+ghiyatsi@finebank.test,Kuliah,Buku referensi,120000,2026-09-18,
+ghiyatsi@finebank.test,Makanan,Kopi,18000,2026-10-02,
+ghiyatsi@finebank.test,Makanan,Bakso,17000,2026-10-11,
+ghiyatsi@finebank.test,Kuliah,Cetak laporan,25000,2026-10-20,
+puji@finebank.test,Makanan,Nasi padang,28000,2026-09-04,
+puji@finebank.test,Belanja,Alat tulis,40000,2026-09-14,
+puji@finebank.test,Belanja,Sepatu,250000,2026-10-06,Diskon akhir bulan
+puji@finebank.test,Makanan,Es teh,5000,2026-10-13,
